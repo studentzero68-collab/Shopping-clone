@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
+import useTheme from "./hooks/useTheme";
 import "./App.css";
 
 function App() {
   const [cartCount] = useState(0);
+  const { theme, toggleTheme } = useTheme();
 
   function handleSearch(query) {
     console.log("Search submitted:", query);
@@ -19,10 +21,12 @@ function App() {
     <>
       <Navbar
         cartCount={cartCount}
+        theme={theme}
+        onThemeToggle={toggleTheme}
         onSearch={handleSearch}
         onCategorySelect={handleCategorySelect}
       />
-      <main>
+      <main className="app-main">
         <h1>Online Mall</h1>
         <p>Product grid goes here next.</p>
       </main>
