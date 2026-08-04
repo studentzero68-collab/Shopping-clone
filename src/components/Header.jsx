@@ -3,7 +3,7 @@ function Header({ cartCount = 0 }) {
     <header className="header">
       <div className="header-inner">
         <a href="/" className="logo">
-          ShopCenter
+          OnlineMall
         </a>
 
         <label className="search-bar">
