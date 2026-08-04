@@ -23,7 +23,7 @@ function App() {
         onCategorySelect={handleCategorySelect}
       />
       <main>
-        <h1>ShopCenter</h1>
+        <h1>Online Mall</h1>
         <p>Product grid goes here next.</p>
       </main>
     </>
