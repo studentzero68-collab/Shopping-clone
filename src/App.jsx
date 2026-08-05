@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import ProductGrid from "./components/ProductGrid";
 import useTheme from "./hooks/useTheme";
 import { useProducts } from "./context/ProductsContext";
 import "./App.css";
@@ -28,7 +29,8 @@ function OnlineMall() {
 
       <main className="app-main">
         <h1>Online Mall</h1>
-        <p>Product grid goes here next.</p>
+
+        <ProductGrid />
       </main>
     </>
   );
