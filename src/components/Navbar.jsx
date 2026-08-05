@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { useProducts } from "../context/ProductsContext";
 import "./Navbar.css";
 
-// Category list — your group can extend this or wire it to real routing/filtering later
 const CATEGORIES = [
   "Men",
   "Women",
@@ -20,17 +20,23 @@ export default function Navbar({
   onCategorySelect,
 }) {
   const [searchValue, setSearchValue] = useState("");
-  const [activeCategory, setActiveCategory] = useState(null);
+
+  const { activeCategory } = useProducts();
 
   function handleSearchSubmit(e) {
     e.preventDefault();
+
     const trimmed = searchValue.trim();
-    if (trimmed && onSearch) onSearch(trimmed);
+
+    if (onSearch) {
+      onSearch(trimmed);
+    }
   }
 
   function handleCategoryClick(category) {
-    setActiveCategory(category);
-    if (onCategorySelect) onCategorySelect(category);
+    if (onCategorySelect) {
+      onCategorySelect(category);
+    }
   }
 
   return (
@@ -48,10 +54,26 @@ export default function Navbar({
             onChange={(e) => setSearchValue(e.target.value)}
             aria-label="Search products"
           />
+
           <button type="submit" aria-label="Search">
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-              <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <circle
+                cx="11"
+                cy="11"
+                r="7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              <line
+                x1="21"
+                y1="21"
+                x2="16.65"
+                y2="16.65"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
             </svg>
           </button>
         </form>
@@ -60,12 +82,20 @@ export default function Navbar({
           type="button"
           className="navbar-theme-toggle"
           onClick={onThemeToggle}
-          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          aria-label={
+            theme === "dark"
+              ? "Switch to light mode"
+              : "Switch to dark mode"
+          }
         >
           {theme === "dark" ? (
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
               <circle cx="12" cy="12" r="5" fill="currentColor" />
-              <g stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <g
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              >
                 <line x1="12" y1="1" x2="12" y2="3" />
                 <line x1="12" y1="21" x2="12" y2="23" />
                 <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
@@ -86,7 +116,11 @@ export default function Navbar({
           )}
         </button>
 
-        <a href="/cart" className="navbar-cart" aria-label={`Cart, ${cartCount} items`}>
+        <a
+          href="/cart"
+          className="navbar-cart"
+          aria-label={`Cart, ${cartCount} items`}
+        >
           <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
             <circle cx="9" cy="21" r="1.5" fill="currentColor" />
             <circle cx="18" cy="21" r="1.5" fill="currentColor" />
@@ -99,7 +133,10 @@ export default function Navbar({
               strokeLinejoin="round"
             />
           </svg>
-          {cartCount > 0 && <span className="navbar-cart-badge">{cartCount}</span>}
+
+          {cartCount > 0 && (
+            <span className="navbar-cart-badge">{cartCount}</span>
+          )}
         </a>
       </div>
 
@@ -108,7 +145,9 @@ export default function Navbar({
           <button
             key={category}
             type="button"
-            className={`navbar-category${activeCategory === category ? " active" : ""}`}
+            className={`navbar-category${
+              activeCategory === category ? " active" : ""
+            }`}
             onClick={() => handleCategoryClick(category)}
           >
             {category}
