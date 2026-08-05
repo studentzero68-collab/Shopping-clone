@@ -8,7 +8,7 @@ import {
 
 const ProductsContext = createContext(null);
 
-const API_URL = "https://fakestoreapi.com/products";
+const API_URL = "https://dummyjson.com/products?limit=100";
 
 export function ProductsProvider({ children }) {
   const [products, setProducts] = useState([]);
@@ -36,7 +36,7 @@ export function ProductsProvider({ children }) {
 
         const data = await response.json();
 
-        setProducts(data);
+        setProducts(data.products);
         setStatus("success");
       } catch (err) {
         if (err.name === "AbortError") return;
@@ -69,28 +69,17 @@ export function ProductsProvider({ children }) {
     });
   }, [products, searchTerm, activeCategory]);
 
-  const value = useMemo(
-    () => ({
-      products,
-      filteredProducts,
-      categories,
-      status,
-      error,
-      searchTerm,
-      activeCategory,
-      setSearchTerm,
-      setActiveCategory,
-    }),
-    [
-      products,
-      filteredProducts,
-      categories,
-      status,
-      error,
-      searchTerm,
-      activeCategory,
-    ]
-  );
+  const value = {
+    products,
+    filteredProducts,
+    categories,
+    status,
+    error,
+    searchTerm,
+    activeCategory,
+    setSearchTerm,
+    setActiveCategory,
+  };
 
   return (
     <ProductsContext.Provider value={value}>
@@ -103,7 +92,7 @@ export function useProducts() {
   const context = useContext(ProductsContext);
 
   if (!context) {
-    throw new Error("useProducts must be used inside ProductsProvider");
+    throw new Error("useProducts must be used inside a ProductsProvider");
   }
 
   return context;
