@@ -1,5 +1,8 @@
+import { useCart } from "../context/CartContext";
+
 function ProductCard({ product }) {
-  const { title, price, image, rating } = product
+  const { title, price, image, rating } = product;
+  const { addToCart } = useCart();
 
   return (
     <article className="product-card">
@@ -13,12 +16,12 @@ function ProductCard({ product }) {
           {rating.rate} ★ <span>({rating.count})</span>
         </p>
         <p className="product-price">R {price.toFixed(2)}</p>
-        <button type="button" className="add-btn">
+        <button type="button" className="add-btn" onClick={() => addToCart(product)}>
           Add to cart
         </button>
       </div>
     </article>
-  )
+  );
 }
 
-export default ProductCard
+export default ProductCard;
