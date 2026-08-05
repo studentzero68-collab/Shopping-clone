@@ -37,4 +37,4 @@ function OnlineMall() {
   );
 }
 
-export default App;
+export default OnlineMall;
