@@ -18,6 +18,7 @@ export default function Navbar({
   onThemeToggle,
   onSearch,
   onCategorySelect,
+  onCartClick,
 }) {
   const [searchValue, setSearchValue] = useState("");
   const [activeCategory, setActiveCategory] = useState(null);
@@ -86,7 +87,7 @@ export default function Navbar({
           )}
         </button>
 
-        <a href="/cart" className="navbar-cart" aria-label={`Cart, ${cartCount} items`}>
+        <a href="/cart" className="navbar-cart" onClick={onCartClick} aria-label={`Cart, ${cartCount} items`}>
           <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
             <circle cx="9" cy="21" r="1.5" fill="currentColor" />
             <circle cx="18" cy="21" r="1.5" fill="currentColor" />
