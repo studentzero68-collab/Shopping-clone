@@ -2,12 +2,14 @@ import Navbar from "./components/Navbar";
 import ProductGrid from "./components/ProductGrid";
 import useTheme from "./hooks/useTheme";
 import { useProducts } from "./context/ProductsContext";
+import { useCart } from "./context/CartContext";
 import "./App.css";
 
 function OnlineMall() {
   const { theme, toggleTheme } = useTheme();
 
   const { setSearchTerm, setActiveCategory } = useProducts();
+  const { cartCount } = useCart();
 
   function handleSearch(query) {
     setSearchTerm(query);
@@ -20,7 +22,7 @@ function OnlineMall() {
   return (
     <>
       <Navbar
-        cartCount={0}
+        cartCount={cartCount}
         theme={theme}
         onThemeToggle={toggleTheme}
         onSearch={handleSearch}
