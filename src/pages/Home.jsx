@@ -1,11 +1,22 @@
+import Hero from "../components/Hero";
+import CategoryButtons from "../components/CategoryButtons";
 import ProductGrid from "../components/ProductGrid";
+import Pagination from "../components/Pagination";
+import Footer from "../components/Footer";
 
 function Home() {
   return (
-    <main className="app-main">
-      <h1>Online Mall</h1>
-      <ProductGrid />
-    </main>
+    <>
+      <Hero />
+      <CategoryButtons />
+
+      <main className="app-main">
+        <ProductGrid />
+        <Pagination />
+      </main>
+
+      <Footer />
+    </>
   );
 }
 

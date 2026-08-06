@@ -11,6 +11,7 @@
 .navbar-top {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 24px;
   max-width: 1200px;
   margin: 0 auto;
@@ -31,45 +32,6 @@
   color: var(--accent);
 }
 
-.navbar-search {
-  flex: 1;
-  display: flex;
-  max-width: 560px;
-  background: var(--search-bg);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.navbar-search input {
-  flex: 1;
-  border: none;
-  padding: 10px 14px;
-  font-size: 0.95rem;
-  color: var(--search-text);
-  background: transparent;
-}
-
-.navbar-search input:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: -2px;
-}
-
-.navbar-search button {
-  border: none;
-  background: var(--accent);
-  color: var(--accent-text);
-  padding: 0 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease;
-}
-
-.navbar-search button:hover {
-  background: var(--accent-hover);
-}
-
 .navbar-theme-toggle {
   display: flex;
   align-items: center;
@@ -81,6 +43,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s ease;
+  margin-left: auto;
 }
 
 .navbar-theme-toggle:hover {
@@ -116,65 +79,4 @@
   align-items: center;
   justify-content: center;
   padding: 0 4px;
-}
-
-.navbar-categories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px 10px;
-  border-top: 1px solid var(--navbar-border);
-  padding-top: 8px;
-}
-
-.navbar-category {
-  background: none;
-  border: none;
-  color: var(--navbar-text-muted);
-  font-size: 0.85rem;
-  font-weight: 500;
-  padding: 6px 12px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.navbar-category:hover {
-  background: var(--navbar-hover);
-  color: var(--navbar-text);
-}
-
-.navbar-category.active {
-  background: var(--accent);
-  color: var(--accent-text);
-  font-weight: 700;
-}
-
-@media (max-width: 640px) {
-  .navbar-top {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .navbar-search {
-    order: 3;
-    max-width: 100%;
-    flex-basis: 100%;
-  }
-
-  .navbar-categories {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    scrollbar-width: none;
-  }
-
-  .navbar-categories::-webkit-scrollbar {
-    display: none;
-  }
-
-  .navbar-category {
-    white-space: nowrap;
-  }
 }

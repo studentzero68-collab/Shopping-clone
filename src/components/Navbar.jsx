@@ -1,85 +1,20 @@
-import { useState } from "react";
-import { useProducts } from "../context/ProductsContext";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-export default function Navbar({
-  cartCount = 0,
-  theme = "light",
-  onThemeToggle,
-  onSearch,
-  onCategorySelect,
-  onCartClick,
-}) {
-  const [searchValue, setSearchValue] = useState("");
-
-  const { categories, activeCategory } = useProducts();
-
-  function handleSearchSubmit(e) {
-    e.preventDefault();
-
-    const trimmed = searchValue.trim();
-
-    if (onSearch) {
-      onSearch(trimmed);
-    }
-  }
-
-  function handleCategoryClick(category) {
-    if (onCategorySelect) {
-      // Clicking the selected category again clears the filter
-      onCategorySelect(
-        activeCategory === category ? null : category
-      );
-    }
-  }
-
+export default function Navbar({ cartCount = 0, theme = "light", onThemeToggle }) {
   return (
     <header className="navbar">
       <div className="navbar-top">
-        <a href="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo">
           Online<span>Mall</span>
-        </a>
-
-        <form className="navbar-search" onSubmit={handleSearchSubmit}>
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            aria-label="Search products"
-          />
-
-          <button type="submit" aria-label="Search">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-              <circle
-                cx="11"
-                cy="11"
-                r="7"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              />
-              <line
-                x1="21"
-                y1="21"
-                x2="16.65"
-                y2="16.65"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-        </form>
+        </Link>
 
         <button
           type="button"
           className="navbar-theme-toggle"
           onClick={onThemeToggle}
           aria-label={
-            theme === "dark"
-              ? "Switch to light mode"
-              : "Switch to dark mode"
+            theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
           }
         >
           {theme === "dark" ? (
@@ -106,12 +41,7 @@ export default function Navbar({
           )}
         </button>
 
-        <a
-          href="/cart"
-          className="navbar-cart"
-          onClick={onCartClick}
-          aria-label={`Cart, ${cartCount} items`}
-        >
+        <Link to="/cart" className="navbar-cart" aria-label={`Cart, ${cartCount} items`}>
           <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
             <circle cx="9" cy="21" r="1.5" fill="currentColor" />
             <circle cx="18" cy="21" r="1.5" fill="currentColor" />
@@ -125,36 +55,9 @@ export default function Navbar({
             />
           </svg>
 
-          {cartCount > 0 && (
-            <span className="navbar-cart-badge">{cartCount}</span>
-          )}
-        </a>
+          {cartCount > 0 && <span className="navbar-cart-badge">{cartCount}</span>}
+        </Link>
       </div>
-
-      <nav className="navbar-categories" aria-label="Product categories">
-        <button
-          type="button"
-          className={`navbar-category${
-            activeCategory === null ? " active" : ""
-          }`}
-          onClick={() => handleCategoryClick(null)}
-        >
-          All
-        </button>
-
-        {categories.map((category) => (
-          <button
-            key={category}
-            type="button"
-            className={`navbar-category${
-              activeCategory === category ? " active" : ""
-            }`}
-            onClick={() => handleCategoryClick(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </nav>
     </header>
   );
 }
