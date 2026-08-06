@@ -8,6 +8,7 @@ export default function Navbar({
   onThemeToggle,
   onSearch,
   onCategorySelect,
+  onCartClick,
 }) {
   const [searchValue, setSearchValue] = useState("");
 
@@ -105,6 +106,7 @@ export default function Navbar({
           )}
         </button>
 
+        <a href="/cart" className="navbar-cart" onClick={onCartClick} aria-label={`Cart, ${cartCount} items`}>
         <a
           href="/cart"
           className="navbar-cart"
