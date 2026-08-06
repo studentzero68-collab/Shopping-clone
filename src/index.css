@@ -20,6 +20,33 @@
   --body-bg: #f7f8fa;
   --body-text: #1b2430;
   --body-text-muted: #5a6472;
+
+  /* Card / panel surfaces (product cards, cart panels, summary boxes) */
+  --card-bg: #ffffff;
+  --card-border: rgba(18, 32, 61, 0.1);
+  --card-shadow: rgba(18, 32, 61, 0.22);
+  --card-shadow-hover: rgba(18, 32, 61, 0.32);
+  --card-hover-border: rgba(242, 169, 59, 0.65);
+
+  /* Inputs (search, form fields, selects) */
+  --input-bg: #ffffff;
+  --input-border: #d6dae1;
+  --input-text: #1b2430;
+  --input-disabled-bg: #f0f2f5;
+
+  /* Muted surfaces used for skeleton/subtle fills */
+  --surface-muted: #f7f8fa;
+  --surface-muted-strong: #f0f2f5;
+  --divider: #edf0f4;
+
+  /* Status colors */
+  --success-bg: #dff7e8;
+  --success-text: #17633a;
+  --error-bg: #fff1f0;
+  --error-text: #b3261e;
+  --highlight-bg: #fff8ec;
+  --skeleton-a: #edf0f4;
+  --skeleton-b: #ffffff;
 }
 
 [data-theme="dark"] {
@@ -28,15 +55,42 @@
   --navbar-text-muted: rgba(247, 248, 250, 0.75);
   --navbar-border: rgba(247, 248, 250, 0.1);
   --navbar-hover: rgba(247, 248, 250, 0.1);
-  --navbar-shadow: rgba(18, 32, 61, 0.18);
-  --search-bg: #f7f8fa;
-  --search-text: #1b2430;
+  --navbar-shadow: rgba(0, 0, 0, 0.35);
+  --search-bg: #1b2b4d;
+  --search-text: #f7f8fa;
   --accent: #f2a93b;
   --accent-hover: #e0982a;
   --accent-text: #12203d;
   --body-bg: #0f1729;
   --body-text: #f7f8fa;
   --body-text-muted: rgba(247, 248, 250, 0.65);
+
+  /* Card / panel surfaces */
+  --card-bg: #17233f;
+  --card-border: rgba(247, 248, 250, 0.12);
+  --card-shadow: rgba(0, 0, 0, 0.55);
+  --card-shadow-hover: rgba(0, 0, 0, 0.7);
+  --card-hover-border: rgba(242, 169, 59, 0.75);
+
+  /* Inputs */
+  --input-bg: #1b2b4d;
+  --input-border: rgba(247, 248, 250, 0.18);
+  --input-text: #f7f8fa;
+  --input-disabled-bg: #0f1729;
+
+  /* Muted surfaces */
+  --surface-muted: #1b2b4d;
+  --surface-muted-strong: #0f1729;
+  --divider: rgba(247, 248, 250, 0.1);
+
+  /* Status colors */
+  --success-bg: rgba(46, 160, 91, 0.18);
+  --success-text: #6fe3a0;
+  --error-bg: rgba(220, 79, 65, 0.18);
+  --error-text: #ff9b91;
+  --highlight-bg: rgba(242, 169, 59, 0.15);
+  --skeleton-a: #1b2b4d;
+  --skeleton-b: #223257;
 }
 
 body {

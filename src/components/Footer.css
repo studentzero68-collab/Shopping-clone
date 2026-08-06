@@ -1,0 +1,29 @@
+.site-footer {
+  background: var(--navbar-bg);
+  color: var(--navbar-text-muted);
+  margin-top: 40px;
+  border-top: 1px solid var(--navbar-border);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.site-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.site-footer-logo {
+  margin: 0 0 6px;
+  font-weight: 800;
+  color: var(--navbar-text);
+}
+
+.site-footer-logo span {
+  color: var(--accent);
+}
+
+.site-footer-year {
+  margin: 0;
+  font-size: 0.8rem;
+}

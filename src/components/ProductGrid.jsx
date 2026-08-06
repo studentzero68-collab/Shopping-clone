@@ -2,7 +2,7 @@ import ProductCard from "./ProductCard";
 import { useProducts } from "../context/ProductsContext";
 
 function ProductGrid() {
-  const { filteredProducts, status, error } = useProducts();
+  const { paginatedProducts, filteredProducts, status, error } = useProducts();
 
   if (status === "loading") {
     return <p className="product-grid-status">Loading products...</p>;
@@ -18,7 +18,7 @@ function ProductGrid() {
 
   return (
     <section className="product-grid" aria-label="Products">
-      {filteredProducts.map((product) => (
+      {paginatedProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </section>

@@ -8,7 +8,8 @@ import {
 
 const ProductsContext = createContext(null);
 
-const API_URL = "https://dummyjson.com/products?limit=100";
+const API_URL = "https://dummyjson.com/products?limit=0";
+const PRODUCTS_PER_PAGE = 8;
 
 const FALLBACK_PRODUCTS = [
   {
@@ -64,6 +65,7 @@ export function ProductsProvider({ children }) {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -117,9 +119,36 @@ export function ProductsProvider({ children }) {
     });
   }, [products, searchTerm, activeCategory]);
 
+  // Whenever the search term or category changes, the result set changes
+  // shape, so jump back to page 1 rather than showing a possibly-empty page.
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, activeCategory]);
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE)
+  );
+
+  // Keep the current page in range if the product count shrinks (e.g. a
+  // filter removes enough items that the last page no longer exists).
+  useEffect(() => {
+    setCurrentPage((page) => Math.min(page, totalPages));
+  }, [totalPages]);
+
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
+    return filteredProducts.slice(start, start + PRODUCTS_PER_PAGE);
+  }, [filteredProducts, currentPage]);
+
+  function goToPage(page) {
+    setCurrentPage(Math.min(Math.max(1, page), totalPages));
+  }
+
   const value = {
     products,
     filteredProducts,
+    paginatedProducts,
     categories,
     status,
     error,
@@ -127,6 +156,9 @@ export function ProductsProvider({ children }) {
     activeCategory,
     setSearchTerm,
     setActiveCategory,
+    currentPage,
+    totalPages,
+    goToPage,
   };
 
   return (
