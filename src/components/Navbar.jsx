@@ -106,10 +106,10 @@ export default function Navbar({
           )}
         </button>
 
-        <a href="/cart" className="navbar-cart" onClick={onCartClick} aria-label={`Cart, ${cartCount} items`}>
         <a
           href="/cart"
           className="navbar-cart"
+          onClick={onCartClick}
           aria-label={`Cart, ${cartCount} items`}
         >
           <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
