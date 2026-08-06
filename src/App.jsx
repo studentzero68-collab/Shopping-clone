@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import CartDrawer from "./components/cartDrawer";
 import { useCart } from "./context/CartContext";
+import Navbar from "./components/Navbar";
+import ProductGrid from "./components/ProductGrid";
 import useTheme from "./hooks/useTheme";
+import { useProducts } from "./context/ProductsContext";
+import { useCart } from "./context/CartContext";
 import "./App.css";
 
 function OnlineMall() {
@@ -19,6 +23,9 @@ function OnlineMall() {
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
+
+  const { setSearchTerm, setActiveCategory } = useProducts();
+  const { cartCount } = useCart();
 
   function handleSearch(query) {
     console.log("Search submitted:", query);
@@ -57,6 +64,28 @@ function OnlineMall() {
           <p>Product grid goes here next.</p>
         </main>
       )}
+    setSearchTerm(query);
+  }
+
+  function handleCategorySelect(category) {
+    setActiveCategory(category);
+  }
+
+  return (
+    <>
+      <Navbar
+        cartCount={cartCount}
+        theme={theme}
+        onThemeToggle={toggleTheme}
+        onSearch={handleSearch}
+        onCategorySelect={handleCategorySelect}
+      />
+
+      <main className="app-main">
+        <h1>Online Mall</h1>
+
+        <ProductGrid />
+      </main>
     </>
   );
 }
